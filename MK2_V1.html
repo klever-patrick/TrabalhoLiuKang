@@ -1,0 +1,36 @@
+
+<canvas id='Algoritmos_AV3'></canvas>
+<script>
+    
+    // LISTA DE VARIÁVEIS GLOBAIS (TODAS AS FUNÇÕES PODEM MODIFICAR)
+
+	xO = 0;																				// x DO SPRITE NO SPRITE SHEET
+	yO = 0;																				// y DO SPRITE NO SPRITE SHEET
+	larguraO = 46;																		// LARGURA DO SPRITE NO SPRITE SHEET
+	alturaO = 46;																		// ALTURA DO SPRITE NO SPRITE SHEET
+	xD = 100;																			// x DO SPRITE NA IMAGEM
+	yD = 100;																			// y DO SPRITE NA IMAGEM
+	larguraD = 92;																		// LARGURA DO SPRITE NA IMAGEM	
+	alturaD = 92;																		// ALTURA DO SPRITE NA IMAGEM
+	i = 0;																				// CONTADOR
+	qFrames = 5;																		// QUANTIDADE DE FRAMES DO SPRITE
+   
+    var I = new Image();																// CRIAÇÃO DA IMAGEM
+	var canvas = document.getElementById("Algoritmos_AV3");								// CRIAÇÃO DA TELA
+	var ctx = canvas.getContext("2d");													// CONTEXTO DA TELA
+	canvas.width = 1000;																// DEFINIÇÃO DA LARGURA DA TELA
+	canvas.height = 1000;																// DEFINIÇÃO DA ALTURA DA TELA
+	I.src = "moeda.png";																// LEITURA DA IMAGEM
+	
+    var desenhar = function()															// FUNÇÃO PARA DESENHAR FRAME DO SPRITE
+	{
+        frame = i % qFrames;
+        xO = frame * larguraO;
+        ctx.clearRect(xD,yD,larguraD,alturaD);
+		ctx.drawImage(I,xO,yO,larguraO,alturaO,xD,yD,larguraD,alturaD);
+		i++;
+    }
+
+    setInterval(desenhar,100);															// FUNÇÃO PARA REPETIR DESENHO A CADA 100ms
+
+</script>

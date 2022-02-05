@@ -1,0 +1,286 @@
+<canvas id='Algoritmos_AV3'></canvas>
+<script>
+
+
+	MxO = new Array();
+	MyO = new Array();
+	MlarguraO = new Array();
+	MalturaO = new Array();
+	MxD = new Array();
+	MyD = new Array();
+	MlarguraD = new Array();
+	MalturaD = new Array();
+	qFrames = new Array();
+	
+	// LISTA DE VARIÁVEIS GLOBAIS (TODAS AS FUNÇÕES PODEM MODIFICAR)
+	
+	k = 1;																				// FATOR DE ESCALA
+	
+	// MOVIMENTO DE GUARDA
+	
+	MxO[0] = [77,128,179,231,282,335];													// x DO SPRITE NO SPRITE SHEET
+	MyO[0] = 18;																		// y DO SPRITE NO SPRITE SHEET
+	MlarguraO[0] = [44,44,44,44,44,44];													// LARGURA DO SPRITE NO SPRITE SHEET
+	MalturaO[0] = [106,106,106,106,106,106];											// ALTURA DO SPRITE NO SPRITE SHEET
+	MxD[0] = 10;																		// x DO SPRITE NA IMAGEM
+	MyD[0] = 20;																		// y DO SPRITE NA IMAGEM
+	MlarguraD[0] = [44,44,44,44,44,44];													// LARGURA DO SPRITE NA IMAGEM
+	MalturaD[0] = [106,106,106,106,106,106];											// ALTURA DO SPRITE NA IMAGEM
+	qFrames[0] = MxO[0].length;															// QUANTIDADE DE FRAMES DO SPRITE
+	
+	// MOVIMENTO DE ANDAR PARA FRENTE
+	
+	MxO[1] = [13,63,113,164,214,264,314,364,418];										// x DO SPRITE NO SPRITE SHEET
+	MyO[1] = 147;																		// y DO SPRITE NO SPRITE SHEET
+	MlarguraO[1] = [46,46,46,46,46,46,46,46,46];										// LARGURA DO SPRITE NO SPRITE SHEET
+	MalturaO[1] = [106,106,106,106,106,106,106,106,106];								// ALTURA DO SPRITE NO SPRITE SHEET
+	MxD[1] = 10;																		// x DO SPRITE NA IMAGEM
+	MyD[1] = 20;																		// y DO SPRITE NA IMAGEM
+	MlarguraD[1] = [46,46,46,46,46,46,46,46,46];										// LARGURA DO SPRITE NA IMAGEM
+	MalturaD[1] = [106,106,106,106,106,106,106,106,106];								// ALTURA DO SPRITE NA IMAGEM
+	qFrames[1] = MxO[1].length;															// QUANTIDADE DE FRAMES DO SPRITE
+	
+	// MOVIMENTO DE MEIA LUA
+	
+	MxO[2] = [13,62,113,182,234];														// x DO SPRITE NO SPRITE SHEET
+	MyO[2] = 736;																		// y DO SPRITE NO SPRITE SHEET
+	MlarguraO[2] = [44,48,63,52,31];													// LARGURA DO SPRITE NO SPRITE SHEET
+	MalturaO[2] = [105,105,105,105,105];												// ALTURA DO SPRITE NO SPRITE SHEET
+	MxD[2] = 10;																		// x DO SPRITE NA IMAGEM
+	MyD[2] = 20;																		// y DO SPRITE NA IMAGEM
+	MlarguraD[2] = [44,48,63,52,31];													// LARGURA DO SPRITE NA IMAGEM
+	MalturaD[2] = [105,105,105,105,105];												// ALTURA DO SPRITE NA IMAGEM
+	qFrames[2] = MxO[2].length;															// QUANTIDADE DE FRAMES DO SPRITE
+	
+	// MOVIMENTO DE SOCO COM O BRAÇO DIREITO
+	MxO[3] = [602,658,710];													            // x DO SPRITE NO SPRITE SHEET
+	MyO[3] = 393;																		// y DO SPRITE NO SPRITE SHEET
+	MlarguraO[3] = [51,46,65];													        // LARGURA DO SPRITE NO SPRITE SHEET
+	MalturaO[3] = [110,110,110];											            // ALTURA DO SPRITE NO SPRITE SHEET
+	MxD[3] = 10;																		// x DO SPRITE NA IMAGEM
+	MyD[3] = 20;																		// y DO SPRITE NA IMAGEM
+	MlarguraD[3] = [51,46,65];													        // LARGURA DO SPRITE NA IMAGEM
+	MalturaD[3] = [106,106,106];											            // ALTURA DO SPRITE NA IMAGEM
+	qFrames[3] = MxO[3].length;															// QUANTIDADE DE FRAMES DO SPRITE
+	
+	// MOVIMENTO DE CHUTE AGACHADO
+
+	MxO[4] = [395,438,438];													            // x DO SPRITE NO SPRITE SHEET
+	MyO[4] = 854;																	    // y DO SPRITE NO SPRITE SHEET
+	MlarguraO[4] = [38,69,69];													        // LARGURA DO SPRITE NO SPRITE SHEET
+	MalturaO[4] = [106,106,106];											            // ALTURA DO SPRITE NO SPRITE SHEET
+	MxD[4] = 10;																	    // x DO SPRITE NA IMAGEM
+	MyD[4] = 20;																	    // y DO SPRITE NA IMAGEM
+	MlarguraD[4] = [38,69,69];													        // LARGURA DO SPRITE NA IMAGEM
+	MalturaD[4] = [106,106,106];											            // ALTURA DO SPRITE NA IMAGEM
+	qFrames[4] = MxO[4].length;														    // QUANTIDADE DE FRAMES DO SPRITE
+
+	// MOVIMENTO DE BLOQUEIO
+	
+	MxO[5] = [345,391];													                // x DO SPRITE NO SPRITE SHEET
+	MyO[5] = 394;																		// y DO SPRITE NO SPRITE SHEET
+	MlarguraO[5] = [46,32];													            // LARGURA DO SPRITE NO SPRITE SHEET
+	MalturaO[5] = [106,106];											                // ALTURA DO SPRITE NO SPRITE SHEET
+	MxD[5] = 10;																		// x DO SPRITE NA IMAGEM
+	MyD[5] = 20;																		// y DO SPRITE NA IMAGEM
+	MlarguraD[5] = [46,32];													            // LARGURA DO SPRITE NA IMAGEM
+	MalturaD[5] = [106,106];											                // ALTURA DO SPRITE NA IMAGEM
+	qFrames[5] = MxO[5].length;															// QUANTIDADE DE FRAMES DO SPRITE
+	
+	// MOVIMENTO DE SOCO COM O BRAÇO DIREITO
+	
+	MxO[6] = [454,508];													                // x DO SPRITE NO SPRITE SHEET
+	MyO[6] = 394;																		// y DO SPRITE NO SPRITE SHEET
+	MlarguraO[6] = [54,65];													            // LARGURA DO SPRITE NO SPRITE SHEET
+	MalturaO[6] = [106,106];											                // ALTURA DO SPRITE NO SPRITE SHEET
+	MxD[6] = 10;																		// x DO SPRITE NA IMAGEM
+	MyD[6] = 20;																		// y DO SPRITE NA IMAGEM
+	MlarguraD[6] = [54,65];													            // LARGURA DO SPRITE NA IMAGEM
+	MalturaD[6] = [106,106];											                // ALTURA DO SPRITE NA IMAGEM
+	qFrames[6] = MxO[6].length;															// QUANTIDADE DE FRAMES DO SPRITE
+
+	// MOVIMENTO DE SOCO COM O BRAÇO ESQUERDO
+	
+	MxO[6] = [454,508];													                // x DO SPRITE NO SPRITE SHEET
+	MyO[6] = 394;																		// y DO SPRITE NO SPRITE SHEET
+	MlarguraO[6] = [54,65];													            // LARGURA DO SPRITE NO SPRITE SHEET
+	MalturaO[6] = [106,106];											                // ALTURA DO SPRITE NO SPRITE SHEET
+	MxD[6] = 10;																		// x DO SPRITE NA IMAGEM
+	MyD[6] = 20;																		// y DO SPRITE NA IMAGEM
+	MlarguraD[6] = [54,65];													            // LARGURA DO SPRITE NA IMAGEM
+	MalturaD[6] = [106,106];											                // ALTURA DO SPRITE NA IMAGEM
+	qFrames[6] = MxO[6].length;															// QUANTIDADE DE FRAMES DO SPRITE
+	
+	// MOVIMENTO DE DANCINHA
+	
+	MxO[7] = [404,460,527,580,647];													    // x DO SPRITE NO SPRITE SHEET
+	MyO[7] = 1945;																		// y DO SPRITE NO SPRITE SHEET
+	MlarguraO[7] = [56,67,53,67,48];													// LARGURA DO SPRITE NO SPRITE SHEET
+	MalturaO[7] = [104,104,104,104,104];											    // ALTURA DO SPRITE NO SPRITE SHEET
+	MxD[7] = 10;																		// x DO SPRITE NA IMAGEM
+	MyD[7] = 20;																		// y DO SPRITE NA IMAGEM
+	MlarguraD[7] = [56,67,53,67,48];												    // LARGURA DO SPRITE NA IMAGEM
+	MalturaD[7] = [104,104,104,104,104];											    // ALTURA DO SPRITE NA IMAGEM
+	qFrames[7] = MxO[7].length;		                                                    // QUANTIDADE DE FRAMES DO SPRITE
+	
+	i = 0;																				// CONTADOR
+	pause = 0;																			// JOGO DESPAUSADO
+	movimento = 0;																		// GUARDA
+        
+    var I = new Image();																// CRIAÇÃO DA IMAGEM
+	var canvas = document.getElementById("Algoritmos_AV3");								// CRIAÇÃO DA TELA
+	var ctx = canvas.getContext("2d");													// CONTEXTO DA TELA
+	canvas.width = 1000;																// DEFINIÇÃO DA LARGURA DA TELA
+	canvas.height = 1000;																// DEFINIÇÃO DA ALTURA DA TELA
+	I.src = "Liu Kang 2.png";															// LEITURA DA IMAGEM
+	
+	ctx.rect(0,0,200,200);																// DESENHA FUNDO
+	ctx.fillStyle = "#9F529F";
+	ctx.fill();
+	
+	xEnxerto = 654;																		// ENXERTO DO FUNDO
+	yEnxerto = 654;
+	larguraEnxerto = 50;
+			
+    var guarda = function()																// FUNÇÃO PARA DESENHAR MOVIMENTO DE GUARDA
+	{
+       	frame = i % qFrames[movimento];
+        
+		xO = MxO[movimento][frame];														// x DO SPRITE NO SPRITE SHEET
+		yO = MyO[movimento];															// y DO SPRITE NO SPRITE SHEET
+		larguraO = MlarguraO[movimento][frame];											// LARGURA DO SPRITE NO SPRITE SHEET
+		alturaO = MalturaO[movimento][frame];											// ALTURA DO SPRITE NO SPRITE SHEET
+		xD = MxD[movimento];															// x DO SPRITE NA IMAGEM
+		yD = MyD[movimento];															// y DO SPRITE NA IMAGEM
+		larguraD = k*MlarguraD[movimento][frame];										// LARGURA DO SPRITE NA IMAGEM
+		alturaD = k*MalturaD[movimento][frame];											// ALTURA DO SPRITE NA IMAGEM
+				
+		ctx.drawImage(I,xO,yO,larguraO,alturaO,xD,yD,larguraD,alturaD);
+		ctx.drawImage(I,xEnxerto,yEnxerto,larguraEnxerto,alturaO,xD+larguraD,yD,larguraEnxerto,alturaD);
+		
+		if(pause%2 == 0)
+		{
+			i++;
+		}	
+	
+		if(movimento == 2 && frame == qFrames[2]-1)
+		{
+			movimento = 0;
+		}
+		if(movimento == 3 && frame == qFrames[3]-1)
+		{
+			movimento = 0;
+		}
+		if(movimento == 4 && frame == qFrames[4]-1)
+		{
+			movimento = 0;
+		}
+		if(movimento == 5 && frame == qFrames[5]-1)
+		{
+			movimento = 0;
+		}
+		if(movimento == 6 && frame == qFrames[6]-1)
+		{
+			movimento = 0;
+		}
+		if(movimento == 7 && frame == qFrames[7]-1)
+		{
+			movimento = 0;
+		}
+		
+    }
+	
+	
+	function botaoPressionado(evento1)													// COMANDOS QUANDO UMA TECLA É PRESSIONADA
+	{
+	
+		//MOVIMENTOS DO PERSONAGEM
+		if(evento1.key == 'l' || evento1.key == 'L')									// MOVIMENTO DE ANDAR PARA FRENTE
+		{
+			movimento = 1;
+			
+		}
+		if(evento1.key == 'q' || evento1.key == 'Q')									// MOVIMENTO DE MEIA LUA
+		{
+			if(movimento != 2)
+			{
+				i = 0;
+			}
+			movimento = 2;
+			
+		}
+		if(evento1.key == 's' || evento1.key == 'S')									// MOVIMENTO DE SOCO COM O BRAÇO DIREITO
+		{
+			if(movimento != 3)
+			{
+				i = 0;
+			}
+			movimento = 3;
+			
+		}
+		if(evento1.key == 'c' || evento1.key == 'C')									// MOVIMENTO DE CHUTE AGACHADO
+		{
+			if(movimento != 4)
+			{
+				i = 0;
+			}
+			movimento = 4;
+			
+		}
+		if(evento1.key == 'b' || evento1.key == 'B')									// MOVIMENTO DE BLOQUEIO
+		{
+			if(movimento != 5)
+			{
+				i = 0;
+			}
+			movimento = 5;
+			
+		}
+		if(evento1.key == 'd' || evento1.key == 'D')									// MOVIMENTO DE SOCO COM O BRAÇO ESQUERDO
+		{
+			if(movimento != 6)
+			{
+				i = 0;
+			}
+			movimento = 6;
+			
+		}
+		if(evento1.key == 'f' || evento1.key == 'F')									// MOVIMENTO DE DANCINHA
+		{
+			if(movimento != 7)
+			{
+				i = 0;
+			}
+			movimento = 7;
+			
+		}
+		//...
+	}
+	document.onkeydown = botaoPressionado;
+	
+	
+	
+	function botaoSolto(evento2)														// COMANDOS QUANDO UMA TECLA É SOLTA
+	{
+		if(evento2.key == 'p' || evento2.key == 'P')
+		{
+			pause++;
+		}
+		if(evento2.key == 'l' || evento2.key == 'L')									// MOVIMENTO DE ANDAR PARA FRENTE
+		{
+			movimento = 0;
+			i = 0;
+		}
+		if(evento2.key == 'f' || evento2.key == 'F')									// MOVIMENTO DE ANDAR PARA FRENTE
+		{
+			movimento = 0;
+			i = 0;
+		}
+	}
+	document.onkeyup = botaoSolto;
+	
+
+    setInterval(guarda,100);															// FUNÇÃO PARA REPETIR DESENHO A CADA 100ms
+	
+	
+</script>

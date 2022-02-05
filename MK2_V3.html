@@ -1,0 +1,85 @@
+
+
+<canvas id='Algoritmos_AV3'></canvas>
+<script>
+
+
+	// LISTA DE VARIÁVEIS GLOBAIS (TODAS AS FUNÇÕES PODEM MODIFICAR)
+	
+
+	xGuardaO = [77,128,179,231,282,335];												// x DO SPRITE NO SPRITE SHEET
+	yGuardaO = [20,19,18,18,19,19];														// y DO SPRITE NO SPRITE SHEET
+	larguraGuardaO = [43,43,43,44,44,44];												// LARGURA DO SPRITE NO SPRITE SHEET
+	alturaGuardaO = [100,101,102,103,101,100];											// ALTURA DO SPRITE NO SPRITE SHEET
+	xGuardaD = 100;																		// x DO SPRITE NA IMAGEM
+	yGuardaD = [20,19,18,18,19,19];														// y DO SPRITE NA IMAGEM
+	larguraGuardaD = [2*43,2*43,2*43,2*44,2*44,2*44];									// LARGURA DO SPRITE NO SPRITE SHEET
+	alturaGuardaD = [2*100,2*101,2*102,2*103,2*101,2*100];								// ALTURA DO SPRITE NA IMAGEM
+	i = 0;																				// CONTADOR
+	pause = 0;																			// JOGO DESPAUSADO
+	qFramesGuarda = xGuardaO.length;													// QUANTIDADE DE FRAMES DO SPRITE
+   
+   
+   
+    var I = new Image();																// CRIAÇÃO DA IMAGEM
+	var canvas = document.getElementById("Algoritmos_AV3");								// CRIAÇÃO DA TELA
+	var ctx = canvas.getContext("2d");													// CONTEXTO DA TELA
+	canvas.width = 1000;																// DEFINIÇÃO DA LARGURA DA TELA
+	canvas.height = 1000;																// DEFINIÇÃO DA ALTURA DA TELA
+	I.src = "Liu Kang 2.png";															// LEITURA DA IMAGEM
+	
+		
+    var guarda = function()																// FUNÇÃO PARA DESENHAR MOVIMENTO DE GUARDA
+	{
+        frame = i % qFramesGuarda;
+        
+		xO = xGuardaO[frame];															// x DO SPRITE NO SPRITE SHEET
+		yO = yGuardaO[frame];															// y DO SPRITE NO SPRITE SHEET
+		larguraO = larguraGuardaO[frame];												// LARGURA DO SPRITE NO SPRITE SHEET
+		alturaO = alturaGuardaO[frame];													// ALTURA DO SPRITE NO SPRITE SHEET
+		xD = 0;																			// x DO SPRITE NA IMAGEM
+		yD = yGuardaD[frame];															// y DO SPRITE NA IMAGEM
+		larguraD = 2*larguraGuardaD[frame];												// LARGURA DO SPRITE NA IMAGEM
+		alturaD = 2*alturaGuardaD[frame];												// ALTURA DO SPRITE NA IMAGEM
+		
+		ctx.clearRect(xD,yD,larguraD,alturaD);
+		ctx.drawImage(I,xO,yO,larguraO,alturaO,xD,yD,larguraD,alturaD);
+		if(pause%2 == 0)
+		{
+			i++;
+		}				
+    }
+	
+	ctx.stroke();																		// PERMITE QUE AS TECLAS SEJAM PRESSIONADAS
+	function botaoPressionado(evento1)													// COMANDOS QUANDO UMA TECLA É PRESSIONADA
+	{
+	
+		// MOVIMENTOS DO PERSONAGEM
+		//if(evento1.key == 'a' || evento1.key == 'A')
+		//{
+		//...
+		//}
+		//if(evento1.key == 'b' || evento1.key == 'B')
+		//{
+		//...
+		//}
+		//...
+	}
+	document.onkeydown = botaoPressionado;
+	
+	
+	
+	function botaoSolto(evento2)														// COMANDOS QUANDO UMA TECLA É SOLTA
+	{
+		if(evento2.key == 'p' || evento2.key == 'P')
+		{
+			pause++;
+		}
+	}
+	document.onkeyup = botaoSolto;
+	
+
+    setInterval(guarda,100);															// FUNÇÃO PARA REPETIR DESENHO A CADA 100ms
+	
+	
+</script>
